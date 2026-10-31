@@ -1,0 +1,21 @@
+[Unit]
+Description=Linux Kernel Buddy Allocator External Memory Fragmentation & Compaction Sentinel
+Documentation=https://github.com/patrick-isles/buddy-compact-sentinel
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/buddy-compact-sentinel --daemon --port 9115
+Restart=always
+RestartSec=5s
+
+# Hardening
+ProtectSystem=strict
+ProtectHome=read-only
+ReadOnlyPaths=/proc/buddyinfo /proc/vmstat /sys/kernel/mm/transparent_hugepage
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

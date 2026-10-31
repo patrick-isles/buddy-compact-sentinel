@@ -1,0 +1,19 @@
+[package]
+name = "buddy-compact-sentinel"
+version = "0.1.0"
+edition = "2021"
+authors = ["Patrick Isles <patrick.isles@pcc.edu>"]
+description = "Linux Kernel Buddy Allocator External Fragmentation & THP Direct Compaction Stall Sentinel in pure Rust"
+license = "MIT"
+
+[dependencies]
+tiny_http = "0.12"
+crossbeam-channel = "0.5"
+ctrlc = "3.4"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
